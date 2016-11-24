@@ -1,0 +1,85 @@
+$baseColor: #96d9ff;
+
+@mixin borderR {
+  border-right: 1px solid darken($baseColor, 30%);
+}
+@mixin borderL {
+  border-left: 1px solid darken($baseColor, 30%);
+}
+
+@mixin gradient{
+  background-image: -webkit-linear-gradient(top, $baseColor, lighten($baseColor, 30%));
+  background-image: -moz-linear-gradient(top, $baseColor, lighten($baseColor, 30%));
+  background-image: -ms-linear-gradient(top, $baseColor, lighten($baseColor, 30%));
+  background-image: -o-linear-gradient(top, $baseColor, lighten($baseColor, 30%));
+  background-image: linear-gradient(top, $baseColor, lighten($baseColor, 30%));
+}
+@mixin gradientR{
+  background-image: -webkit-linear-gradient(bottom, $baseColor, lighten($baseColor, 30%));
+  background-image: -moz-linear-gradient(bottom, $baseColor, lighten($baseColor, 30%));
+  background-image: -ms-linear-gradient(bottom, $baseColor, lighten($baseColor, 30%));
+  background-image: -o-linear-gradient(bottom, $baseColor, lighten($baseColor, 30%));
+  background-image: linear-gradient(bottom, $baseColor, lighten($baseColor, 30%));
+}
+@mixin transLinks {
+  -webkit-transition: all .5s; /* Safari 3.1 to 6.0 */
+      transition: all .5s;
+} 
+h1,h2,h3,h4 {
+  color: $baseColor;
+}
+// Nesting 
+header {
+  @include gradient;
+  h1 {
+    color: darken($baseColor, 45%);
+    font-weight: normal;
+    margin: .5em 0 0;
+    text-align: center;
+  }
+  span {
+    font-style: italic;
+  }
+}
+nav {
+  margin: 0;
+  background-color: $baseColor; 
+  overflow: hidden;
+  a {
+    padding: .5em .7em;
+    background-color: $baseColor;  
+    color: #fff;
+    text-decoration: none;
+    @include transLinks;
+    &:hover {
+      background-color: darken($baseColor, 15%);  
+    }
+  }
+}
+
+article {
+  text-align: justify;
+  @include gradientR;
+}
+footer {
+  text-align: center;
+  @include gradient;
+}
+.col-1,
+.col-2 {
+  background-color: lighten($baseColor, 15%); 
+}
+article h2,
+aside h3,
+footer h4 {
+  color: darken($baseColor, 45%);
+}
+article,
+aside,
+footer {
+  line-height: 1.4;
+}
+article h2 {
+  margin-bottom: -.2em;
+}
+//base over

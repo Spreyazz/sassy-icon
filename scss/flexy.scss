@@ -1,0 +1,228 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  display: flex;  
+  flex-flow: column;
+    background-color: lighten($baseColor, 35%); 
+    padding-bottom: 1em;
+}
+
+header,nav,article,aside,footer {
+  flex: 1 1 0;
+  padding:1em;
+}
+
+//Flex order********
+
+header { 
+  order:1;
+}
+article { 
+  order: 2;
+}
+.col-1 { 
+  order: 3; 
+} 
+.col-2 { 
+  order: 4;
+}
+footer  { 
+  order: 5;
+}
+nav {
+  order:6;
+  flex-shrink: 0;
+}
+
+/* =======================================
+  Efnisyfirlit - mobile
+  ======================================== */
+
+input {
+  display: none;  //input er aldrei sýnilegt
+}
+label {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border: 3px outset #999;
+
+  color: darken($baseColor, 25%);
+  cursor: pointer;
+  font-size: 1.5em;
+  text-align: center;
+  padding:.2em .4em;
+  transition: all .4s ease;
+  background-color: lighten($baseColor, 30%); 
+  z-index: 999;
+}
+
+input:checked + label {
+  box-shadow: inset 0 .2em .2em rgba(0, 0, 0, 0.25);
+  border: 2px inset #999;
+  color: $baseColor;
+}
+input:checked ~ .topmenu {
+  position: fixed;
+  bottom:2.9em;
+  left: 0;
+  z-index: 99;
+  transition: all 1s ease;
+}
+.topmenu {
+  display: flex;
+  flex-flow: column wrap; // ath! breytist úr column í row í + 48em 
+  position: fixed;
+  bottom: -15em;
+  left: 0; 
+  width: 100%;
+  background-color: darken($baseColor, 30%);
+  overflow: hidden;
+  transition: all 1s ease; 
+  padding: 0;
+  margin: 0;
+  li {
+    list-style-type: none;
+    left: 0;
+  }
+  a {
+    display: block;
+    width: 100%;
+ //   flex-flow: column wrap; // þarf að vera hér til annars virkar text align ekki
+    z-index: 99;
+    background-color: darken($baseColor, 25%);
+    color: white;
+    border-bottom: 1px solid #00fcff;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    padding: .5em;
+    &:hover {
+      background: #00fcff;
+    }
+  }
+}
+
+
+/* allar myndir eiga að vera í 100% stærð */
+img {
+  display: flex; /* img er inline element */
+  width: 100%; 
+  height: auto; /* auto heldur réttu hlutfalli í mynd */
+}
+
+//box utanum myndirnar
+.box{
+    display: flex;
+    flex-flow: row wrap;
+  }
+/*ath! figure tagið þarf að 0 stilla vegna þess að normalize.css er með extra 40px margin*/
+figure {
+    width: 50%;
+    margin:0;
+    padding: 0; 
+}
+figure img {
+    border: 1px solid #f80; 
+}
+figure img:hover {
+    border: 2px solid #f00; 
+    cursor: pointer;
+}
+
+// Viðmið 37.5em 600px+ breakpoints +++++++++++++
+
+@media screen and (min-width: 37.5em) {
+
+  figure {
+        width: 25%;
+    }
+}
+// Viðmið 48em + breakpoints +++++++++++++
+
+@media screen and (min-width: 48em) {
+  body {
+    margin-top: 2.4em;
+  }
+  header,nav,article,aside,footer {
+  flex: 1 1 0;
+  padding:1em;
+  }
+//navigation    *************
+  nav {
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: .3em 0;
+    flex: 1;
+
+  }
+// efnisyfirlit - spjaldtölvur
+  .topmenu {
+    display: flex;
+    flex-flow: row; //breytist úr column (mobile)
+        justify-content:center;
+    position: relative; // absolut staðsetning skipt út
+    top:0;
+    left: 0;
+    //max-height: 3em;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    a {
+        padding: .3em .5em;
+        border-width:0;
+        border-left: 1px solid #00fcff;
+      }
+    }
+    .topmenu li:last-child {
+        border-right: 1px solid #00fcff;
+    }
+    label {
+    display: none; // label ekki sýnilegt
+  }
+  .col-1 { 
+    order: 3; 
+//    width:50%;
+    flex: 2 2 1em;
+  } 
+  .col-2 { 
+    order: 5;
+//    width:50%; 
+    flex: 2 2 1em;
+  }
+}
+
+// Viðmið 48em + breakpoints +++++++++++++
+
+@media screen and (min-width: 60em) {
+  body {
+    max-width: 60em;
+    margin: 1.5em auto 0 auto;
+  }
+//Flex order********
+
+  article { 
+    order: 4;
+//    width: 50%; 
+//  - grow - shrink - base
+    flex: 2 2 1em;
+  }
+  .col-1 { 
+    order: 3; 
+//    width:25%;
+    flex: 1 1 0;
+  } 
+  .col-2 { 
+    order: 5;
+//    width:25%; 
+    flex: 1 1 0;
+  }
+  .topmenu a {
+    padding: .3em 1em;
+  }
+}
